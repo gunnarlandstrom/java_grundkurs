@@ -7,6 +7,9 @@
  *
  * @author Robert Jonsson
  */
+
+package lektioner.Lektion5;
+
 public class Child1 extends Person {
     // Instansvariabler
     private int weeklyAllowance;
@@ -41,5 +44,5 @@ public class Child1 extends Person {
     public String toString() {
         // Vi måste anropa getName för att namnet på barnet
         return String.format("%s (%d kr)", getName(), weeklyAllowance);
-    } 
+    }
 }

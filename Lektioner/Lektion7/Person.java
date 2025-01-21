@@ -7,6 +7,7 @@
  *
  * @author Robert Jonsson
  */
+package lektioner.Lektion7;
 public class Person {
     private String name;  // Personens namn
     private int age;      // Personens ålder

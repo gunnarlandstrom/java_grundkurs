@@ -8,6 +8,8 @@
  * Starta programet från terminalen enligt t.ex. följande:
  * java Argument hello
  */
+
+package ovningar.ovning_1;
 public class Argument {
     // Main metoden
     public static void main(String[] args) {

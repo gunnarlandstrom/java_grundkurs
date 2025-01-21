@@ -1,3 +1,4 @@
+
 /**
  * Ex08_02 - Child
  *
@@ -8,6 +9,7 @@
  *
  * @author Robert Jonsson
  */
+package lektioner.Lektion8.tmp;
 public class Child extends Person {
     // Instansvariabler
     private int weeklyAllowance;

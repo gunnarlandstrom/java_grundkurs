@@ -7,6 +7,7 @@
  * @author Robert Jonsson
  * @version 1.0
  */
+package lektioner.Lektion7;
 public class MyFirstArray {
     public static void main(String[] args) {
         // Deklarerar och skapar en array som rymmer 3 heltal

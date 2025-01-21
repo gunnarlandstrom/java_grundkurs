@@ -4,6 +4,9 @@
  * Ett exempel som provar att använda diverse
  * kontrollflöden (t.ex if-sats och for-loop).
  */
+
+
+package ovningar.ovning_1;
 public class TestOfControllOfFlow {
 	// Main metoden
 	public static void main(String[] args) {

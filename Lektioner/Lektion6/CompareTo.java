@@ -1,3 +1,4 @@
+package lektioner.Lektion6;
 import java.util.Scanner;
 
 /**

@@ -1,3 +1,5 @@
+package lektioner.Lektion6;
+
 import java.util.Scanner;
 
 /**
@@ -19,19 +21,19 @@ public class FileName {
 
         // Använder en while-loop för att kunna göra flera inmatningar
         while (userInput.length() > 0) {
-            /* Vi börjar med att kolla om en punkt finns för annars är det
-               inte ett gilltigt filnamn. Använder lastIndexof så att vi
-               är säker på att vi får index för sista punkten i namnet (ett
-               filnamn kan innehålla punkter i själva namnet).
-            */
+            /*
+             * Vi börjar med att kolla om en punkt finns för annars är det
+             * inte ett gilltigt filnamn. Använder lastIndexof så att vi
+             * är säker på att vi får index för sista punkten i namnet (ett
+             * filnamn kan innehålla punkter i själva namnet).
+             */
             int dotIndex = userInput.lastIndexOf('.');
 
-            // Kollar om -1 returnerades vilket i så fall innebär att det 
+            // Kollar om -1 returnerades vilket i så fall innebär att det
             // inte finns någon punkt i inmatningen.
             if (dotIndex == -1) {
                 System.out.println("Wrong filename format (missing .)\n");
-            }
-            else {
+            } else {
                 // Med hjälp av index för sista punkten använder vi metoden
                 // substring för att ta reda på filnamnet och filändelsen.
                 String suffix = userInput.substring(dotIndex + 1);

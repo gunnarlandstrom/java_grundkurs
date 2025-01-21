@@ -1,3 +1,5 @@
+package lektioner.Lektion6;
+
 import java.util.*;    // Scanner
 import java.io.*;    // File, FileNotFoundException
 

@@ -5,6 +5,7 @@
  * Klassen utökar klassen Person med instansvariabeln företag, 
  * samt metoder för att sätta/hämta detta värde.
  */
+package lektioner.Lektion5;
 public class Employee extends Person {
     // Instansvariabler
     private String company;

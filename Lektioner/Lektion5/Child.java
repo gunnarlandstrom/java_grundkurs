@@ -9,5 +9,7 @@
  *
  * @author Robert Jonsson
  */
+package lektioner.Lektion5;
+
 public class Child extends Person {
 }

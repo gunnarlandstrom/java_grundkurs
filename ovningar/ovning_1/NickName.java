@@ -4,6 +4,9 @@
  * Ett första exempel som använder variabler. Visar även
  * exempel på olika escape-teckenoch utskrift med unicode-tecken.
  */
+
+package ovningar.ovning_1;
+
 public class NickName {
     // Main metoden
     public static void main(String[] args) {

@@ -4,6 +4,8 @@
  * Ett exempel som provar att använda diverse
  * operatorer (t.ex addition och tilldelning).
  */
+package ovningar.ovning_1;
+
 public class TestOfOperators {
 	// Main metoden
 	public static void main(String[] args) {
@@ -24,7 +26,7 @@ public class TestOfOperators {
 		   för att få resultatet i procent.
 		   Resutlatet tilldelar vi variabeln shootingPercentage
 		*/
-		shootingPercentage = 100.0 * goals / shots;
+		shootingPercentage = 100.0 * goals / shots / games;
 				
 		// Skriver ut divisionen och resultatet av denna
 		System.out.println(goals + " / " + shots + " = " + shootingPercentage + "%");

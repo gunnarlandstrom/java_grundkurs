@@ -5,6 +5,7 @@
  *
  * @author Robert Jonsson
  */
+package lektioner.Lektion8.tmp;
 public class PackageTest {
     public static void main(String[] args) {
         // Börjar med att skapa ett Employee-objekt

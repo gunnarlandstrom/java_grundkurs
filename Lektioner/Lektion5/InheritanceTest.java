@@ -5,6 +5,7 @@
  *
  * @author Robert Jonsson
  */
+package lektioner.Lektion5;
 public class InheritanceTest {
     public static void main(String[] args) {
         // Börjar med att skapa ett Person-objekt

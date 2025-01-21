@@ -3,6 +3,7 @@
  * 
  * Ett exempel som "testar" användningen av klassen Person.
  */
+package ovningar.ovning_1;
 public class TestOfPerson {
 	// Main metoden
 	public static void main(String[] args) {

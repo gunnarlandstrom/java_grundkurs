@@ -7,6 +7,7 @@
  *
  * @author Robert Jonsson
  */
+package lektioner.Lektion5;
 public class ChildTest1 {
     public static void main(String[] args) {
         // Deklarerar ett objekt av typen Object

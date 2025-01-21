@@ -5,6 +5,7 @@
  *
  * @author Robert Jonsson
  */
+package lektioner.Lektion7;
 public class ExpandArray {
     // Metod som utökar en Person-array med ytterligare element
     // Deklarerad som static så att det inte behövs något objekt av klassen

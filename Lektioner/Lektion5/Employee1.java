@@ -6,6 +6,7 @@
  * samt metoder för att sätta/hämta detta värde. Metoden print
  * överskuggasföratt skriva ut även företaget.
  */
+package lektioner.Lektion5;
 public class Employee1 extends Person {
     // Instansvariabler
     private String company;

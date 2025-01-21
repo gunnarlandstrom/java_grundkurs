@@ -12,6 +12,9 @@
  * gärna att kompilera och starta för att se vilket fel-
  * meddelande som ges.
  */
+
+package ovningar.ovning_1;
+
 public class Person {
 	// Instansvariabler
 	private int pnr;

@@ -11,6 +11,7 @@
  *
  * @author Robert Jonsson
  */
+package lektioner.Lektion7;
 public class Person2 implements Comparable {
     private String name;  // Personens namn
     private int age;      // Personens ålder
