@@ -40,5 +40,7 @@ public class CompareTo {
             System.out.print("\nEnter first word> ");
             word1 = input.nextLine();
         }
+        input.close();
     }
+
 }

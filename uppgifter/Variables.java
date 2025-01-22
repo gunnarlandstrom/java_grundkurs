@@ -1,16 +1,27 @@
-package uppgifter;
+/**
+* Filnamn: Variables.java
+* @author Gunnar Landström
+* @version 1.0
+* Datum: 2025-01-22
+*
+* Beskrivning:
+* Kollar om ett nummer är jämnt delbart med 2, skriver ut resultatet.
+*/
+
 public class Variables {
     public static void main(String[] args) {
-        int number;
         boolean isEven;
-        String output;
+        String outputEven;
+        String outputOdd;
+        int number = 514;
+        int isNumberEven = number % 2;
 
-        number = 512 % 2;
-        output = "Number is even, that is ";
-        if (number != 0) {
+        outputEven = "Is number even? Yes that is ";
+        outputOdd = "Is number even? No that is ";
+
+        if (isNumberEven != 0) {
             isEven = false;
-        }
-        else {
+        } else {
             isEven = true;
         }
 
@@ -18,11 +29,11 @@ public class Variables {
             System.out.println();
         }
         if (isEven) {
-            System.out.println(output);
-            System.out.print(isEven + ".");
-            
-
+            System.out.print(outputEven + isEven + ".\n");
+            System.out.println("The number: " + number + " is even!");
+        } else {
+            System.out.print(outputOdd + isEven + ".\n");
+            System.out.println("The number: " + number + " is not even!");
         }
-
     }
 }

@@ -61,6 +61,7 @@ public class ScannerTest {
             }
 
 			// När vi läser/skriver filer ska vi alltid stänga filen när vi är klar
+            keyboard.close();
 			file.close();
         }
 

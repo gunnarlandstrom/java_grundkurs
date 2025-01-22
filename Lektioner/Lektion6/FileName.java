@@ -47,5 +47,6 @@ public class FileName {
             System.out.print("Enter a new filename (only enter will exit)> ");
             userInput = input.nextLine();
         }
+        input.close();
     }
 }

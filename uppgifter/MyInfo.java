@@ -1,3 +1,13 @@
+/**
+* Filnamn: MyInfo.java
+* @author Gunnar Landström
+* @version 1.0
+* Datum: 2025-01-22
+*
+* Beskrivning:
+* Skriver ut info om Gunnar Landström.
+*/
+
 public class MyInfo {
     public static void main(String[] args) {
 
