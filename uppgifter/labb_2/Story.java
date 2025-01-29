@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
-
 /**
-* Filename: Story.java
-* @author Gunnar Landström
-* @version 1.0
-* Date: 2025-01-26
-*
-* Description:
-* Prints a story about an ant using inputs from user.
-*/
+ * Filename: Story.java
+ * 
+ * @author Gunnar Landström
+ * @version 1.0
+ *          Date: 2025-01-26
+ *
+ *          Description:
+ *          Prints a story about an ant using inputs from user.
+ */
 
 public class Story {
     public static void main() {
@@ -35,7 +35,6 @@ public class Story {
         String inputAntHoliday = input.nextLine();
         System.out.println("");
 
-        
         System.out.print("The little ant " + inputAntName + ".\r");
         System.out.print("Once upon a time there was a tiny, tiny little ant who lived with " + inputAntFamily);
         System.out.print(" and it's " + inputAntAmountOfSiblings + " siblings in an anthill,");
@@ -45,6 +44,6 @@ public class Story {
         System.out.print(inputAntCarry + " and " + inputAntCarry2 + " to the hill, but today it was ");
         System.out.print(inputAntHoliday + ", so that's why " + inputAntName + " was free from work.");
 
+        input.close();
     }
-
 }
