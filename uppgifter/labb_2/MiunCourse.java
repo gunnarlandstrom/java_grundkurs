@@ -1,3 +1,13 @@
+/**
+* Filename: MiunCourse.java
+* @author Gunnar Landström
+* @version 1.0
+* Date: 2025-01-29
+*
+* Description:
+* Declare class MiunCourse and methods.
+*/
+
 public class MiunCourse {
     private String miunCourseName = "Hello";
     private String miunCourseCode = "To";
@@ -49,6 +59,7 @@ public class MiunCourse {
         return miunCourseDescription;
     }
 
+        //Prints course info.
     public void printCourseInfo(){
         System.out.println("Coursename: " + miunCourseName);
         System.out.println("Course code: " + miunCourseCode);

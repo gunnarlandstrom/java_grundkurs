@@ -1,3 +1,13 @@
+/**
+* Filnamn: MiunCourse.java
+* @author Gunnar Landström
+* @version 1.0
+* Datum: 2025-01-29
+*
+* Description:
+* Declare class TestCourseClass and constructs course 1 and 2.
+*/
+
 import javax.swing.JOptionPane;
 
 public class TestCourseClass {

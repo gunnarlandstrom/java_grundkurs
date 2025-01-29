@@ -1,14 +1,13 @@
 import java.util.Scanner;
-
 /**
  * Filename: Story.java
  * 
  * @author Gunnar Landström
  * @version 1.0
- *          Date: 2025-01-26
+ * Date: 2025-01-26
  *
- *          Description:
- *          Prints a story about an ant using inputs from user.
+ * Description: 
+ * Prints a story about an ant using inputs from user.
  */
 
 public class Story {
