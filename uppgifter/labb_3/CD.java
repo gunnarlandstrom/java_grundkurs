@@ -1,4 +1,5 @@
 package labb_3;
+
 import labb_3.Publisher;
 
 import java.util.Scanner;
@@ -7,8 +8,7 @@ public class CD {
     private String songTitle;
     private String songArtist;
     private int songLength;
-    private String songPublisher;
-    private String songPublisherPhone;
+    private Publisher songPublisher;
 
     // Title Set/Get
     public void setSongTitle(String input) {
@@ -38,18 +38,28 @@ public class CD {
     }
 
     // Publisher Set/Get
-    public void setSongPublisher(String input) {
-        this.songPublisher = input;
+    public void setSongPublisher(Publisher songPublisher) {
+        this.songPublisher = songPublisher;
+    }
+
+    public void setSongPublisher(String inputName, String inputPhone) {
+        Object publisherName = inputName;
+        Object publisherNumber = inputPhone;
     }
 
     public Publisher getSongPublisher() {
-        Publisher getPublisherName();
-        return
+        return songPublisher;
     }
 
-    public void setSongPublisher(String name, String phone){
-        this.songPublisher = name;
-        this.songPublisherPhone = phone;
+    public void printCD() {
+        System.out.println("Artist: " + songArtist);
+        System.out.println("Song name: " + songTitle);
+        System.out.println("Song length: " + songLength);
+        System.out.println("Publisher: " + songPublisher);
+    }
+
+    public String toString() {
+    return "@ " + getSongArtist() + "\n" + getSongTitle() + "\n" + getSongLength() + "\n";
     }
 
 }

@@ -61,6 +61,6 @@ public class Publisher {
 
     public String toString(){
 
-        return "@ " + getPublisherName() + " "+ getPublisherPhoneNumber() + "\n Publisher number: " + publisherAmount;
+        return "@ " + getPublisherName() + " "+ getPublisherPhoneNumber() + "\n Publisher amount: " + publisherAmount;
     }
 }
