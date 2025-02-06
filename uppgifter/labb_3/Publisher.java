@@ -13,8 +13,8 @@ package labb_3;
 public class Publisher {
 
     // Variables
-    private String publisherName;
-    private String publisherPhoneNumber;
+    protected String publisherName;
+    protected String publisherPhoneNumber;
     private static int publisherAmount;
 
     // Constructors.
@@ -61,6 +61,6 @@ public class Publisher {
 
     public String toString(){
 
-        return "@ " + getPublisherName() + " "+ getPublisherPhoneNumber() + "\n Publisher amount: " + publisherAmount;
+        return getPublisherName() + " "+ getPublisherPhoneNumber() + "\n";
     }
 }
