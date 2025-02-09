@@ -1,7 +1,6 @@
-import java.util.Scanner;
+package labb_3;
 
-import labb_3.CD;
-import labb_3.Publisher;
+import java.util.Scanner;
 
 public class CDtest {
 

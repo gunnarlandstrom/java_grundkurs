@@ -13,8 +13,8 @@ package labb_3;
 public class Publisher {
 
     // Variables
-    protected String publisherName;
-    protected String publisherPhoneNumber;
+    private String publisherName;
+    private String publisherPhoneNumber;
     private static int publisherAmount;
 
     // Constructors.
