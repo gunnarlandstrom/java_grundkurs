@@ -9,3 +9,15 @@
 *.bin
 *.lib
 *.javadoc
+*.js
+*.css
+*.woff
+*.woff2
+*.html
+*.md
+*.txt
+*.jdgenerator
+*.COPYRIGHT
+*.LICENSE
+*.svg
+*.png
