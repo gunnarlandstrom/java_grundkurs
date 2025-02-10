@@ -5,3 +5,7 @@
 *.json
 *.outputs
 *.docx
+*.doc
+*.bin
+*.lib
+*.javadoc
