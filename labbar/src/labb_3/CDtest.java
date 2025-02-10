@@ -1,4 +1,3 @@
-package labb_3;
 
 /**
  * Filnamn: PublisherTest2.java

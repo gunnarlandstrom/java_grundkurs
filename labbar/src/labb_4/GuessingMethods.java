@@ -1,4 +1,3 @@
-package labb_4;
 
 public class GuessingMethods {
    
