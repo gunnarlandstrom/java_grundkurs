@@ -11,6 +11,7 @@ public class CDtest {
         Publisher publisherOne = new Publisher("Random records", "022-354 123");
         CD cdOne = new CD("Tribute", "Tenacious D", 412, publisherOne);
         CD cdTwo = new CD();
+        cdTwo.printCD();
         CD cdThree = new CD();
 
         cdTwo.setSongArtist("Falling in Reverse");

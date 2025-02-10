@@ -11,12 +11,12 @@ public class CD extends Publisher {
 
     }
 
-    public CD(String title, String artist, int length, Publisher publisher) {
+    public CD(String title, String artist, int length, Publisher objectPublisher) {
 
         this.songTitle = title;
         this.songArtist = artist;
         this.songLength = length;
-        songPublisher = publisher;
+        songPublisher = objectPublisher;
     }
 
     // Title Set/Get

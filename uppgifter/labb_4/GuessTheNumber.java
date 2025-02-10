@@ -19,10 +19,10 @@ public class GuessTheNumber extends GuessingMethods {
         boolean guessIsCorrect = false;
         int highestNumber;
         int lowestNumber;
+        String tempGuess = "1";
         int userGuess;
         int randomNumber = 0;
         int amountOfGuesses = 0;
-        String exitGuess;
 
         System.out.println(
                 "We are going to play a guessing game, enter two numbers to assign the interval to guess between: ");
@@ -46,46 +46,44 @@ public class GuessTheNumber extends GuessingMethods {
             System.out.println("Random number is: " + randomNumber);
         }
 
-        System.out.println("So the given interval is between " + lowestNumber + "<-->" + highestNumber);
-
         // Utför do-while-loopen
-        System.out.print("Guess the answer!: ");
-        userGuess = input.nextInt();
-        exitGuess = Integer.toString(userGuess);
         do {
             // Frågar användaren efter sin gissning
-            System.out.println(randomNumber);
-
-            if (userGuess <= highestNumber || userGuess >= lowestNumber) {
-                System.out.print(
-                        "The number to guess is between" + lowestNumber + " and " + highestNumber + " Guess again!:");
-                userGuess = input.nextInt();
-                exitGuess = Integer.toString(userGuess);
-            } else if (userGuess > highestNumber || userGuess < lowestNumber) {
-                System.out.println("Unvalid guess, guess between: " + lowestNumber + "<-->" + highestNumber);
-            } else {
-                if (userGuess > randomNumber) {
-                    System.out.println("Too high, guess again: ");
-                    userGuess = input.nextInt();
-                    exitGuess = Integer.toString(userGuess);
+            try {
+                tempGuess = input.nextLine();
+                userGuess = Integer.parseInt(tempGuess);
+                amountOfGuesses++;
+            } catch (NumberFormatException e) {
+                if (tempGuess == "exit") {
+                    break;
                 } else {
-                    System.out.println("Too low, guess again: ");
-                    userGuess = input.nextInt();
-                    exitGuess = Integer.toString(userGuess);
+                    System.out.println("So the given interval is between " + lowestNumber + "<-->" + highestNumber);
+                    System.out.print("Guess the answer!: ");
+                    continue;
+                }
+            }
 
+            if (userGuess > highestNumber || userGuess < lowestNumber) {
+                System.out.print(
+                        "Unvalid guess, guess between: " + lowestNumber + " <--> " + highestNumber + "Guess again!: ");
+                continue;
+            } else {
+                if (userGuess == randomNumber) {
+                    guessIsCorrect = true;
+                    break;
+                } else if (userGuess > randomNumber) {
+                    System.out.print("Too high! " + "\n" + "Guess again: ");
+                } else {
+                    System.out.print("Too low! " + "\n" + "Guess again: ");
                 }
             }
 
             // Kollar om användarens gissning är lika med det slumpade talet
             guessIsCorrect = (userGuess == randomNumber);
 
-            if (!guessIsCorrect || exitGuess == "exit") {
-                System.out.println(userGuess + " is not the number I'm thinking of");
-            }
+        } while (!guessIsCorrect || tempGuess == "exit");
 
-        } while (!guessIsCorrect);
-
-        System.out.println("Your guess is right!");
+        System.out.println("Your guess is right! You got it in: " + amountOfGuesses + " guesses! Good job!");
         input.close();
     }
 }
