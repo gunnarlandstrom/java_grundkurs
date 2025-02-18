@@ -4,58 +4,55 @@ import java.util.Scanner;
 
 public class CommandPrompt {
 
-    String userInput;
+    Scanner scannerInput = new Scanner(System.in);
     public static final String inputPrompt = "input> ";
-
-    Scanner input = new Scanner(System.in);
+    private static int showHelpMessage = 0;
 
     public CommandPrompt() {
-        commandPromptHelp();
         start();
 
     }
 
     public void start() {
         String commandMenuInput;
-        commandPromptHelp();
+        if (showHelpMessage == 0) {
+
+            showHelpMessage = +1;
+            commandPromptHelp();
+        }
         System.out.print(inputPrompt);
         commandMenuInput = takeInput();
+
         commandMenu(commandMenuInput);
 
     }
 
     public String takeInput() {
-        userInput = input.nextLine();
+        String userInput = scannerInput.nextLine();
         commandQuit(userInput);
         return userInput;
     }
 
     public void commandMenu(String userInput) {
-        if (userInput == "1") {
+        if (userInput.equals("1")) {
             commandPromptHelp();
             return;
-        } else if (userInput == "2") {
+        } else if (userInput.equals("2")) {
             commandPromptHelloWorld();
             return;
-        } else if (userInput == "3") {
-            commandIsNumberOdd(takeInput());
+        } else if (userInput.equals("3")) {
+            commandIsNumberOdd();
             return;
-        } else if (userInput == "4") {
+        } else if (userInput.equals("4")) {
             repeatString();
             return;
-        } else if (userInput == "5") {
+        } else if (userInput.equals("5") || userInput.equals("calc") || userInput.equals("calculator")) {
             commandCalculator();
             return;
-        }
-        else if (userInput == "6") {
-            start();
-            return;
-        }
-        else if (userInput == "7" || userInput == "q" || userInput == "quit") {
+        } else if (userInput.equals("6") || userInput.equals("q") || userInput.equals("quit")) {
             commandQuit(userInput);
             return;
-        }
-        else {
+        } else {
             System.out.println("Unrecognized input, try again! ");
             start();
         }
@@ -64,62 +61,90 @@ public class CommandPrompt {
 
     public void commandPromptHelloWorld() {
         System.out.println("Hello, World!");
+        showHelpMessage = 0;
+        start();
     }
 
     public void commandPromptHelp() {
+        for (int i = 0; i < 3; i++) {
+            System.out.println("");
+        }
         System.out.println("Valid commands are:");
         System.out.println("[1] help -  Shows all available commands with a description.");
         System.out.println("[2] hello - Prints out a welcoming sentence.");
         System.out.println("[3] odd - Asks for a number and tells user if it's odd/even.");
         System.out.println("[4] repeat - Gives a choice of how many repetitions of an input the user wants to do.");
         System.out.println(
-                "[5] calc or calculate - Takes two inputs and offers addition, subtraction, division and multiplication of those inputs.");
-        System.out.println("[6] return - Returns the user to the menu.");
-        System.out.println("[7] q or quit - Stops the program.\n");
-
+                "[5] calculate - Takes two inputs and offers addition, subtraction, division and multiplication of those inputs.");
+        System.out.println("[6] quit - Stops the program.\n");
+        start();
     }
 
     public void commandQuit(String input) {
-        if (input == "q" || input == "quit" || input == "7") {
+
+        if (input.equals("6") || input.equals("q") || input.equals("quit")) {
+            scannerInput.close();
             System.out.println("Program terminated.");
             System.exit(0);
         }
+        return;
     }
 
-    public boolean commandIsNumberOdd(String input) {
+    public void commandIsNumberOdd() {
 
-        boolean isOdd;
-        int inputTemp;
+        System.out.print("Enter a number you want to check if odd/even: " + inputPrompt);
+        boolean validNumber = false;
+        int inputTemp = 0;
 
-        inputTemp = Integer.parseInt(input);
-        /*
-         * try {
-         * } catch (NumberFormatException e) {
-         * inputTemp = 0;
-         * }
-         */
+        while (!validNumber) {
 
-        if (inputTemp % 2 == 0) {
-            isOdd = false;
-            System.out.println("The number " + inputTemp + " is even.");
+            try {
+                inputTemp = Integer.parseInt(takeInput());
+            } catch (NumberFormatException e) {
+                validNumber = false;
+                System.out.print("Something went wrong, try again! " + inputPrompt);
+                continue;
+            }
 
-        } else {
-            isOdd = true;
-            System.out.println("The number " + inputTemp + " is odd.");
+            if (inputTemp % 2 == 0) {
+                System.out.println("The number " + inputTemp + " is even.");
+                validNumber = true;
+
+            } else if (inputTemp % 2 != 0) {
+                System.out.println("The number " + inputTemp + " is odd.");
+                validNumber = true;
+            } else {
+            }
         }
-        return isOdd;
+        showHelpMessage = 0;
+        start();
     }
 
     public void repeatString() {
+        boolean validChoice = false;
+        int repeatAmount = 0;
         System.out.print("How many times do you want to repeat? ");
-        int repeatAmount = Integer.parseInt(takeInput());
+        while (!validChoice) {
 
-        System.out.print("What do you want to repeat? ");
-        String reapeatedString = takeInput();
+            try {
+                repeatAmount = Integer.parseInt(takeInput());
+                validChoice = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Something went wrong, try again!");
+                System.out.print("How many times do you want to repeat? " + inputPrompt);
+                continue;
+            }
 
-        for (int i = 0; i < repeatAmount; i++) {
-            System.out.println(reapeatedString);
+            System.out.print("What do you want to repeat? ");
+            String reapeatedString = takeInput();
+
+            for (int i = 0; i < repeatAmount; i++) {
+                System.out.println(reapeatedString);
+            }
         }
+
+        showHelpMessage = 0;
+        start();
     }
 
     public void commandCalculator() {
@@ -134,28 +159,30 @@ public class CommandPrompt {
         int tempNumberTwo = Integer.parseInt(takeInput());
 
         do {
+            System.out.println("");
             System.out.println("[1] Addition. ");
             System.out.println("[2] Subtraktion.");
             System.out.println("[3] Division.");
             System.out.println("[4] Multiplication.");
-            System.out.print("Choose an operator [1], [2], [3] or [4]: ");
+            System.out.println("Choose an operator [1], [2], [3] or [4]: ");
+            System.out.print(inputPrompt);
             tempOperatorChoice = takeInput();
 
-            if (tempOperatorChoice == "1") {
+            if (tempOperatorChoice.equals("1")) {
                 validChoice = true;
                 int addedNumber = calculatorAddition(tempNumberOne, tempNumberTwo);
                 System.out.println(tempNumberOne + " + " + tempNumberTwo + " = " + addedNumber);
-            } else if (tempOperatorChoice == "2") {
+            } else if (tempOperatorChoice.equals("2")) {
                 validChoice = true;
                 int subtractedNumber = calculatorSubtraction(tempNumberOne, tempNumberTwo);
                 System.out.println(
                         "Your subtraction of " + tempNumberOne + " and " + tempNumberTwo + " = " + subtractedNumber);
-            } else if (tempOperatorChoice == "3") {
+            } else if (tempOperatorChoice.equals("3")) {
                 validChoice = true;
-                float dividedNumber = calculatorDivision(tempNumberOne, tempNumberTwo);
+                double dividedNumber = calculatorDivision(tempNumberOne, tempNumberTwo);
                 System.out
                         .println("Your division of " + tempNumberOne + " and " + tempNumberTwo + " = " + dividedNumber);
-            } else if (tempOperatorChoice == "4") {
+            } else if (tempOperatorChoice.equals("4")) {
                 validChoice = true;
                 int multipliedNumber = calculatorMultiplication(tempNumberOne, tempNumberTwo);
                 System.out.println(tempNumberOne + " * " + tempNumberTwo + " = " + multipliedNumber);
@@ -163,6 +190,8 @@ public class CommandPrompt {
                 System.out.println("Something went wrong, try again!");
             }
         } while (!validChoice);
+        showHelpMessage = 0;
+        start();
 
     }
 
@@ -173,27 +202,54 @@ public class CommandPrompt {
 
     public int calculatorSubtraction(int inputOne, int inputTwo) {
 
-        int tempSubtraction;
+        int subtractionChoice = 0;
+        int tempSubtraction = 0;
         System.out.print("Do you want to subtract the first or second number? [1]/[2] ");
-        int subtractionChoice = input.nextInt();
+        boolean validChoice = false;
 
-        if (subtractionChoice == 1) {
-            tempSubtraction = (inputOne - inputTwo);
-        } else {
-            tempSubtraction = (inputTwo - inputOne);
+        while (!validChoice) {
+
+            try {
+                subtractionChoice = Integer.parseInt(takeInput());
+            } catch (NumberFormatException e) {
+                System.out.print("Something went wrong, try again! " + inputPrompt);
+                continue;
+            }
+            // int subtractionChoice = Integer.parseInt(takeInput());
+
+            if (subtractionChoice == 1) {
+                tempSubtraction = (inputOne - inputTwo);
+                validChoice = true;
+            } else {
+                tempSubtraction = (inputTwo - inputOne);
+                validChoice = true;
+            }
         }
         return tempSubtraction;
     }
 
-    public int calculatorDivision(int inputOne, int inputTwo) {
-        int tempDivision;
+    public double calculatorDivision(double inputOne, double inputTwo) {
+        boolean validChoice = false;
+        double tempDivision = 0;
+        int divisionChoice = 0;
         System.out.print("Do you want to divide the first or second number? [1]/[2] : ");
-        int divisionChoice = input.nextInt();
 
-        if (divisionChoice == 1) {
-            tempDivision = (inputOne / inputTwo);
-        } else {
-            tempDivision = (inputTwo / inputOne);
+        while (!validChoice) {
+
+            try {
+                divisionChoice = Integer.parseInt(takeInput());
+            } catch (NumberFormatException e) {
+                System.out.print("Something went wrong, try again! " + inputPrompt);
+                continue;
+            }
+
+            if (divisionChoice == 1) {
+                tempDivision = (inputOne / inputTwo);
+                validChoice = true;
+            } else {
+                validChoice = true;
+                tempDivision = (inputTwo / inputOne);
+            }
         }
         return tempDivision;
 

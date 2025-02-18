@@ -1,4 +1,4 @@
-
+package labb_3;
 /**
 * Filnamn: PublisherTest1.java
 * @author Gunnar Landström
