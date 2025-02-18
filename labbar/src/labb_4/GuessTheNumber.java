@@ -1,4 +1,4 @@
-
+package labb_4;
 import java.util.Scanner;
 
 /**
@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @author Gunnar Landström
  */
 
-public class GuessTheNumber extends GuessingMethods {
+public class GuessTheNumber {
 
     /**
      * @param args
