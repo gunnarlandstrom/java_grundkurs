@@ -10,11 +10,8 @@ package labb_5;
  */
 
 
-public class CD extends Publisher {
-    private String songTitle;
+public class CD extends Media {
     private String songArtist;
-    private int songLength;
-    private Publisher songPublisher;
 
     // Constructors
     public CD() {
@@ -23,96 +20,37 @@ public class CD extends Publisher {
 
     public CD(String title, String artist, int length, Publisher objectPublisher) {
 
-        this.songTitle = title;
         this.songArtist = artist;
-        this.songLength = length;
-        songPublisher = objectPublisher;
+        setMediaTitle(title);
+        setMediaLength(length);
+        setMediaPublisher(objectPublisher);
     }
 
-    
-    /** 
-     * @param input
-     */
-    // Title Set/Get
-    public void setSongTitle(String input) {
-        this.songTitle = input;
-    }
-
-    
-    /** 
-     * @return String
-     */
-    public String getSongTitle() {
-        return songTitle;
-    }
-
-    
-    /** 
-     * @param input
-     */
     // Artist Set/Get
     public void setSongArtist(String input) {
         this.songArtist = input;
     }
 
     
-    /** 
-     * @return String
-     */
+     // Return artist
     public String getSongArtist() {
         return songArtist;
     }
 
-    
-    /** 
-     * @param input
-     */
-    // Length Set/Get
-    public void setSongLength(int input) {
-        this.songLength = input;
-    }
+    // Get song length 00:00:00
+    public String getSongLengthAsString() {
+        int tempTime = getMediaLength();
+        String songLength = (String.format("%02d:%02d:%02d seconds.", tempTime / 3600, (tempTime % 3600) / 60, (tempTime % 60)));
 
-    
-    /** 
-     * @return int
-     */
-    public int getSongLength() {
         return songLength;
-    }
-
-    
-    /** 
-     * @param object
-     */
-    // Publisher Set/Get
-    public void setSongPublisher(Publisher object) {
-        songPublisher = object;
-    }
-
-    
-    /** 
-     * @param inputName
-     * @param inputPhone
-     */
-    public void setSongPublisher(String inputName, String inputPhone) {
-        songPublisher = new Publisher(inputName, inputPhone);
-
-    }
-
-    
-    /** 
-     * @return Publisher
-     */
-    public Publisher getSongPublisher() {
-        return songPublisher;
     }
 
     // Prints
     public void printCD() {
         System.out.println("Artist: " + songArtist);
-        System.out.println("Song name: " + songTitle);
-        System.out.println("Song length: " + songLength + " seconds.");
-        System.out.println("Publisher: " + songPublisher);
+        System.out.println("Song name: " + getMediaTitle());
+        System.out.println("Song length: " + getSongLengthAsString());
+        System.out.println("Publisher: " + getMediaPublisher());
     }
 
     
@@ -121,7 +59,7 @@ public class CD extends Publisher {
      */
     @Override
     public String toString() {
-        return "@ Artist: " + getSongArtist() + "\n Title: " + getSongTitle() + "\n Length: " + getSongLength() + " seconds. \n Publisher: " + getSongPublisher();
+        return "@ Artist: " + getSongArtist() + "\n Title: " + getMediaTitle() + "\n Length: " + getSongLengthAsString() + ". \n Publisher: " + getMediaPublisher();
     }
 
 }

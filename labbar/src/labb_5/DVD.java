@@ -31,7 +31,7 @@ public class DVD extends Media {
         return ageLimit;
     }
 
-    public String getDvdLength() {
+    public String getDvdLengthAsString() {
 
         int s = getMediaLength();
         String duration = (String.format("%02dh %02dm %02ds", s / 3600, (s % 3600) / 60, (s % 60)));
@@ -39,18 +39,17 @@ public class DVD extends Media {
         return duration;
     }
 
-    public void dvdPrint() {
+    public void printDVD() {
         System.out.println("Title: " + getMediaTitle());
-        System.out.println("Length: " + getMediaLength());
+        System.out.println("Length: " + getDvdLengthAsString());
         System.out.println("Age limit : " + getDvdAgeLimit());
         System.out.println("Publisher : " + getMediaPublisher());
 
-        mediaPrint();
     }
 
     public String toString() {
 
-        return "Title: " + getMediaTitle() + "\nLength: " + getMediaLength() + "\nAge: " + getDvdAgeLimit()
+        return "Title: " + getMediaTitle() + "\nLength: " + getDvdLengthAsString() + "\nAge: " + getDvdAgeLimit()
                 + "\n Publisher: " + getMediaPublisher();
     }
 
