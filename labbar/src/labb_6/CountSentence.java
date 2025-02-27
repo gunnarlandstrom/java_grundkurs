@@ -82,12 +82,17 @@ public class CountSentence {
     // Sentences
     public void sentenceCounter(String userInput) {
 
+        String tempString = userInput;
+
+        int j = tempString.length();
+        if (tempString.charAt(j -1 ) != '.' || tempString.charAt(j - 1) != '?' || tempString.charAt(j - 1) != '!') {
+            amountOfSentences++;
+        }
         for (int i = 0; i < userInput.length(); i++) {
             if (userInput.charAt(i) == '.' || userInput.charAt(i) == '?' || userInput.charAt(i) == '!'
                     || userInput.charAt(i) == 13) {
                 amountOfSentences++;
             }
-
         }
 
     }
