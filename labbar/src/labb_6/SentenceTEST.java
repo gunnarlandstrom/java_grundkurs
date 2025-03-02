@@ -6,6 +6,8 @@ public class SentenceTEST {
 
         CountSentence obj1 = new CountSentence();
 
+        obj1.countingPrinter();
+
     }
 
 }

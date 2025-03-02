@@ -20,7 +20,7 @@ public class CountSentence {
             System.out.println("Enter the string you want to count!");
             System.out.print(inputPrompt);
             String userInput = scannerInput.nextLine();
-            String countedSentence = countingSentence(userInput);
+            countingSentence(userInput);
         } else {
             quitProgram();
         }

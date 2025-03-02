@@ -6,6 +6,8 @@ public class CommandPromptTest {
 
         CommandPrompt cmd1 = new CommandPrompt();
 
+        cmd1.commandQuit("null");
+
         
 
     }
