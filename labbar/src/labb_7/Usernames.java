@@ -1,57 +1,71 @@
 package labb_7;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Usernames {
 
-    public static void main(String[] args) {
+    // Constructor
+    public Usernames() {
 
-        String[] names = new String[4];
-
-        names[0] = "kalle korvkupa";
-        names[1] = "timmy tysktok";
-        names[2] = "Stella Stavsugga";
-        names[3] = "Pelle Pojksnopp";
-
-        create(names);
     }
 
+    // Creates ArrayList of Firstname, Lastname and a combined username of 3 letters from each.
     public static ArrayList<String> create(String[] names) {
-        ArrayList<String> usernames = new ArrayList<String>();
+        ArrayList<String> userNames = new ArrayList<String>();
+        String tempUserFirst = "";
+        String tempUserSecond = "";
+        String userName;
+        String userNameTemp = "";
 
         for (int i = 0; i < names.length; i++) {
 
             String tempString = names[i];
+            
+            // Checks if Arrayelement is empty
+            if (tempString == null) {
+                break;
+            }
+
+            // Splits First and Lastname 
             String[] tempArray = tempString.split(" ");
-            String[] tempArraySecond = tempString.split("(?=[a-z]{3})");
+
+            // Creates UserName
+            for (int j = 0; j < tempArray.length; j++) {
+
+                String tempStringSub = tempArray[j];
+
+                if (tempStringSub.length() > 2) {
+                    if (j % 2 == 0) {
+                        tempUserFirst = tempStringSub.substring(0, 3);
+                    } else {
+                        tempUserSecond = tempStringSub.substring(0, 3);
+                    }
+                } else if (tempStringSub.length() < 3) {
+                    if (j % 2 == 0) {
+                        tempUserFirst = tempStringSub;
+                    } else {
+                        tempUserSecond = tempStringSub;
+                    }
+                }
+
+            }
             String firstName = tempArray[0];
             String lastName = tempArray[1];
 
-            String userNameFirst = tempArraySecond[i];
-
-            System.out.println(firstName + " " + i);
-            System.out.println(lastName + " " + i);
-
-
-
-
-            /*
-             * 
-             * for (int j = 0; j < tempArray.length; j++) {
-             * if (j % 2 == 0) {
-             * String firstName = tempArray[j];
-             * System.out.println(firstName + " " + j);
-             * } else {
-             * String lastName = tempArray[j];
-             * System.out.println(lastName + " " + j);
-             * }
-             * 
-             * }
-             */
+            userNameTemp = tempUserFirst.toLowerCase() + tempUserSecond.toLowerCase();
+            userName = firstName + " " + lastName + " (" + userNameTemp + ")";
+            userNames.add(userName);
 
         }
 
-        return usernames;
+        return userNames;
+    }
+
+    // Prints ArrayList
+    public void userNamesPrinter(ArrayList<String> list) {
+
+        for (String s : list) {
+            System.out.println(s);
+        }
     }
 }
