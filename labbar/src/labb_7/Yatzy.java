@@ -1,15 +1,40 @@
 package labb_7;
 
+import java.text.DecimalFormat;
+
 public class Yatzy {
     private String[] dices = new String[5];
     private static int yatzyCounter = 0;
+    private static int rolledDices = 0;
+    private static int yatzyGames = 0;
 
     public Yatzy() {
+        yatzyGames++;
+        System.out.println("Game # " + yatzyGames);
+
         rollDices();
+        System.out.print("Your dices are: ");
+        for (String s : dices){
+            System.out.print(s);
+
+        }
+        System.out.println("");
 
         boolean isYatzy = isYatzy();
-        sortDices();
+    }
 
+    // Yatzycounter and rollcounter
+    public int yatzyCounter() {
+
+        DecimalFormat onlyFourDecimals = new DecimalFormat("0.0000");
+
+        System.out.println("You got #" + yatzyCounter + " Yatzys!");
+
+        double percentageYatzy = ((double) yatzyCounter / (double) rolledDices * 100);
+
+        System.out.println("That is (" + onlyFourDecimals.format(percentageYatzy) + "%) of the number of throws");
+
+        return yatzyCounter;
     }
 
     // Rolls all five disces
@@ -27,29 +52,21 @@ public class Yatzy {
             }
             dices[i] = Integer.toString(randomNumber);
 
-        }
+            isYatzy();
 
-        System.out.print("The dices are rolled! They landed on: ");
-        for (String s : dices) {
-            System.out.print(s);
         }
-        System.out.println("\n");
+        rolledDices++;
 
     }
-
-    // Print amount of Yatzy
-    
 
     // Rerolls desired dices
     public void rollDices(boolean diceOne, boolean diceTwo, boolean diceThree, boolean diceFour, boolean diceFive) {
 
         int randomNumber = 0;
 
-        while (diceOne || diceTwo || diceThree || diceFour || diceFive) {
+        System.out.print("Rolling dices: ");
 
-            for (String s : dices) {
-                System.out.println(s);
-            }
+        while (diceOne || diceTwo || diceThree || diceFour || diceFive) {
 
             if (diceOne) {
 
@@ -58,6 +75,7 @@ public class Yatzy {
                     randomNumber = (int) (Math.random() * 10);
                 }
                 dices[0] = Integer.toString(randomNumber);
+                System.out.print("1 ");
                 diceOne = false;
             } else if (diceTwo) {
                 randomNumber = (int) (Math.random() * 10);
@@ -65,6 +83,7 @@ public class Yatzy {
                     randomNumber = (int) (Math.random() * 10);
                 }
                 dices[1] = Integer.toString(randomNumber);
+                System.out.print("2 ");
                 diceTwo = false;
             } else if (diceThree) {
                 randomNumber = (int) (Math.random() * 10);
@@ -72,6 +91,7 @@ public class Yatzy {
                     randomNumber = (int) (Math.random() * 10);
                 }
                 dices[2] = Integer.toString(randomNumber);
+                System.out.print("3 ");
                 diceThree = false;
             } else if (diceFour) {
                 randomNumber = (int) (Math.random() * 10);
@@ -79,18 +99,21 @@ public class Yatzy {
                     randomNumber = (int) (Math.random() * 10);
                 }
                 dices[3] = Integer.toString(randomNumber);
+                System.out.print("4 ");
                 diceFour = false;
             } else if (diceFive) {
-
+                
                 randomNumber = (int) (Math.random() * 10);
                 while (randomNumber < 1 || randomNumber >= 7) {
                     randomNumber = (int) (Math.random() * 10);
                 }
-                dices[5] = Integer.toString(randomNumber);
+                dices[4] = Integer.toString(randomNumber);
+                System.out.print("5 ");
                 diceFive = false;
             }
 
         }
+        System.out.println("");
 
     }
 
@@ -111,8 +134,9 @@ public class Yatzy {
     }
 
     // Sorts the dices
-    public void sortDices() {
+    public void sortDices(String input) {
 
+        System.out.println("Game # " + input);
         for (int i = 0; i < dices.length; i++) {
             int tempOne = Integer.valueOf(dices[i]);
             for (int j = i + 1; j < dices.length; j++) {
@@ -128,6 +152,7 @@ public class Yatzy {
         for (String s : dices) {
             System.out.print(s);
         }
+        System.out.println("\n");
 
     }
 

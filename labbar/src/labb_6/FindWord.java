@@ -44,7 +44,6 @@ public class FindWord {
         String searchedWord = wantedWord;
         Scanner fileInput = scannerFromFile(wantedFile);
         long startTime = System.currentTimeMillis();
-        System.out.println("KAOOOOS");
         while (fileInput.hasNext()) {
             String tempString = fileInput.nextLine();
             if (tempString.equals(wantedWord)) {
