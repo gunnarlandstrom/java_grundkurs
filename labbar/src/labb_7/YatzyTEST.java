@@ -4,8 +4,9 @@ public class YatzyTEST {
 
     public void main(String[] args) {
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 10_000_000; i++) {
             Yatzy game = new Yatzy();
+
 
         }
         

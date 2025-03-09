@@ -7,8 +7,8 @@ public class Yatzy {
     public Yatzy() {
         rollDices();
 
-
-        isYatzy();
+        boolean isYatzy = isYatzy();
+        sortDices();
 
     }
 
@@ -30,12 +30,15 @@ public class Yatzy {
         }
 
         System.out.print("The dices are rolled! They landed on: ");
-        for (String s : dices){
+        for (String s : dices) {
             System.out.print(s);
         }
         System.out.println("\n");
 
     }
+
+    // Print amount of Yatzy
+    
 
     // Rerolls desired dices
     public void rollDices(boolean diceOne, boolean diceTwo, boolean diceThree, boolean diceFour, boolean diceFive) {
@@ -101,14 +104,37 @@ public class Yatzy {
             j++;
             if (i == 4) {
                 yatzyCounter++;
-                System.out.println("Yatzy!!!! Wooooo! That is Yatzy #" + yatzyCounter);
                 return true;
             }
+        }
+        return false;
+    }
 
+    // Sorts the dices
+    public void sortDices() {
+
+        for (int i = 0; i < dices.length; i++) {
+            int tempOne = Integer.valueOf(dices[i]);
+            for (int j = i + 1; j < dices.length; j++) {
+                int tempTwo = Integer.valueOf(dices[j]);
+                if (Integer.valueOf(dices[i]) < Integer.valueOf(dices[j])) {
+                    String tempNumber = dices[i];
+                    dices[i] = dices[j];
+                    dices[j] = tempNumber;
+                }
+            }
+        }
+        System.out.print("Your sorted dices are: ");
+        for (String s : dices) {
+            System.out.print(s);
         }
 
-        System.out.println("Sorry, " + dices[0] + " " + dices[1] + " " + dices[2] + " " + dices[3] + " " + dices[4]
-                + " is not Yatzy!");
-        return false;
+    }
+
+    // Print dices
+    @Override
+    public String toString() {
+
+        return dices[0] + " " + dices[1] + " " + dices[2] + " " + dices[3] + " " + dices[4];
     }
 }
