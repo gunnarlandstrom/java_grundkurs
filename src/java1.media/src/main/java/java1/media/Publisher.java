@@ -1,4 +1,4 @@
-package Labbarskola;
+package java1.media;
 /**
  * Filnamn: PublisherTest2.java
  * @author Gunnar Landström

@@ -1,4 +1,4 @@
-package Labbarskola;
+package java1.media;
 
 public class Media extends Publisher {
 

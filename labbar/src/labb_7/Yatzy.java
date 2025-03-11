@@ -1,4 +1,3 @@
-package labb_7;
 
 import java.text.DecimalFormat;
 
@@ -14,7 +13,7 @@ public class Yatzy {
 
         rollDices();
         System.out.print("Your dices are: ");
-        for (String s : dices){
+        for (String s : dices) {
             System.out.print(s);
 
         }
@@ -52,9 +51,9 @@ public class Yatzy {
             }
             dices[i] = Integer.toString(randomNumber);
 
-            isYatzy();
-
+            
         }
+        isYatzy();
         rolledDices++;
 
     }
@@ -102,7 +101,7 @@ public class Yatzy {
                 System.out.print("4 ");
                 diceFour = false;
             } else if (diceFive) {
-                
+
                 randomNumber = (int) (Math.random() * 10);
                 while (randomNumber < 1 || randomNumber >= 7) {
                     randomNumber = (int) (Math.random() * 10);
@@ -119,18 +118,18 @@ public class Yatzy {
 
     // Checks if user have Yatzy
     public boolean isYatzy() {
-        int j = 1;
-        int i = 0;
+        int dice1 = Integer.valueOf(dices[0]);
+        int dice2 = Integer.valueOf(dices[1]);
+        int dice3 = Integer.valueOf(dices[2]);
+        int dice4 = Integer.valueOf(dices[3]);
+        int dice5 = Integer.valueOf(dices[4]);
 
-        while (dices[i].equals(dices[j])) {
-            i++;
-            j++;
-            if (i == 4) {
-                yatzyCounter++;
-                return true;
-            }
+        if (dice1 == dice2 && dice1 == dice3 && dice1 == dice4 && dice1 == dice5) {
+            yatzyCounter++;
+            return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     // Sorts the dices

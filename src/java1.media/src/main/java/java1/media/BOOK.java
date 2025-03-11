@@ -1,4 +1,4 @@
-package Labbarskola;
+package java1.media;
 
 public class BOOK extends Media {
     private String bookAuthor;

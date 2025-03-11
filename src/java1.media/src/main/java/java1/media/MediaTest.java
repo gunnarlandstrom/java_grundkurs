@@ -1,7 +1,7 @@
 
-package Labbarskola;
+import java1.media.*;
 
-public class DVDtest extends Media {
+public class MediaTest extends Media {
 
     public static void main(String[] args){
 
