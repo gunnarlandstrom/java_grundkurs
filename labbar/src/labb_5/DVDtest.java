@@ -5,7 +5,7 @@ public class DVDtest extends Media {
 
     public static void main(String[] args){
 
-        
+        // Skapar diverse objekt
         DVD dvd1 = new DVD("Harry Potter", 123921, 18, new Publisher("Publisher one", "Phone: 123-123"));
         DVD dvd2 = new DVD("The Hobbit", 102817, 18, new Publisher("Publisher one", "Phone: 123-123"));
         CD cd1 = new CD("Dancing queen", "Abba", 1337 , new Publisher("Publisher two", "Phone: 345-345"));

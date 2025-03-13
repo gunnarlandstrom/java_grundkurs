@@ -8,11 +8,13 @@ public class FindWord {
 
     private int amountOfWords;
 
+    // Constructor
     public FindWord() throws FileNotFoundException {
 
         start();
     }
 
+    // Prompts user for startinputs
     public void start() throws FileNotFoundException {
         Scanner userInput = scannerFromKeyboard();
 
@@ -26,6 +28,7 @@ public class FindWord {
 
     }
 
+    // Scanners
     public Scanner scannerFromKeyboard() {
         Scanner keyboardInput = new Scanner(System.in);
         return keyboardInput;
@@ -37,6 +40,7 @@ public class FindWord {
         return fileInput;
     }
 
+    //  Counting amount of words in file and checks if usersearched word exists
     public void countWordsInFile(String wantedWord, String wantedFile) throws FileNotFoundException {
 
         boolean foundWord = false;
@@ -64,18 +68,15 @@ public class FindWord {
         }
         else {
             System.out.println("The word '" + searchedWord + "' does NOT exist in this file.");
-
         }
-
     }
 
+    // Sets true if searched word, else false
     public boolean wasWordFound(boolean input) {
-
         if (input == true) {
             return true;
         } else {
             return false;
         }
-
     }
 }

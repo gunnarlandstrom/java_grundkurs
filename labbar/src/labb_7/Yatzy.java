@@ -2,11 +2,13 @@
 import java.text.DecimalFormat;
 
 public class Yatzy {
+    // Array and variables
     private String[] dices = new String[5];
     private static int yatzyCounter = 0;
     private static int rolledDices = 0;
     private static int yatzyGames = 0;
 
+    // Constructor
     public Yatzy() {
         yatzyGames++;
         System.out.println("Game # " + yatzyGames);
@@ -155,7 +157,7 @@ public class Yatzy {
 
     }
 
-    // Print dices
+    // Prints dices
     @Override
     public String toString() {
 

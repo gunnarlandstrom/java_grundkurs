@@ -27,12 +27,14 @@ public class Population {
         }
     }
 
+    // Scanner
     public Scanner scannerFromFile(String fileName) throws FileNotFoundException {
         Scanner fileInput = new Scanner(new File(fileName));
 
         return fileInput;
     }
 
+    // Counts population for every year, processes the strings and saves to file
     public void countPopulation() throws FileNotFoundException {
 
         try {
@@ -74,6 +76,7 @@ public class Population {
 
     }
 
+    // Asks user if he wants to run program
     public boolean start() {
 
         System.out.println(
@@ -100,6 +103,7 @@ public class Population {
         return false;
     }
 
+    // Exits program
     public void quitProgram() throws FileNotFoundException {
         System.out.println("Closing program, goodbye!");
 

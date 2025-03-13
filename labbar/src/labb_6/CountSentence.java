@@ -26,6 +26,7 @@ public class CountSentence {
         }
     }
 
+    // Counting userinput sentence
     public String countingSentence(String userInput) {
 
         sentenceCounter(userInput);
@@ -37,6 +38,7 @@ public class CountSentence {
         return "a";
     }
 
+    // Startprompt user and asks if they want to run the program
     public boolean start() {
 
         System.out.println(
@@ -62,7 +64,8 @@ public class CountSentence {
         }
         return false;
     }
-
+    
+    // Exits program
     public void quitProgram() {
         System.out.println("Closing program, goodbye!");
 
@@ -72,6 +75,7 @@ public class CountSentence {
 
     }
 
+    // Printer
     public void countingPrinter() {
 
         System.out.println("Sentences: " + amountOfSentences);
@@ -79,7 +83,7 @@ public class CountSentence {
         System.out.println("Special characters: " + amountOfChars);
     }
 
-    // Sentences
+    // Counting Sentences
     public void sentenceCounter(String userInput) {
 
         String tempString = userInput;
@@ -102,7 +106,7 @@ public class CountSentence {
         return amountOfSentences;
     }
 
-    // Words
+    // Counting Words
     public void wordCounter(String userInput) {
 
         for (int i = 0; i < userInput.length(); i++) {
@@ -119,7 +123,7 @@ public class CountSentence {
         return amountOfWords;
     }
 
-    // Characters
+    // Counting Characters
     public void charCounter(String userInput) {
 
         for (int i = 0; i < userInput.length(); i++) {

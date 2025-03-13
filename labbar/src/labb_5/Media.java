@@ -56,6 +56,7 @@ public class Media extends Publisher {
         return mediaPublisher;
     }
 
+    // Printers
     public void mediaPrint() {
 
         System.out.println("Title: " + getMediaTitle());

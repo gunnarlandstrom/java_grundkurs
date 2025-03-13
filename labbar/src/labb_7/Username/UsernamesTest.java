@@ -1,4 +1,4 @@
-package labb_7;
+package labb_7.Username;
 import java.util.ArrayList;
 
 public class UsernamesTest {
@@ -7,8 +7,10 @@ public class UsernamesTest {
 
     public static void main(String[] args) {
 
+        // Creates array
         String[] names = new String[10];
 
+        // Sets array
         names[0] = "Kalle Korvkupa";
         names[1] = "Timmy Tysktok";
         names[2] = "Stella Stavsugga";

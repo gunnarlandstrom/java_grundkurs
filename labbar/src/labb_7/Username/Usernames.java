@@ -1,4 +1,4 @@
-package labb_7;
+package labb_7.Username;
 
 import java.util.ArrayList;
 
