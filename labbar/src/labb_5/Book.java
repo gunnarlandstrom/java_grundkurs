@@ -3,12 +3,12 @@ package labb_5;
 public class BOOK extends Media {
     private String bookAuthor;
 
-    // Constructors 
-    public BOOK(){
+    // Constructors
+    public BOOK() {
 
     }
 
-    public BOOK(String author, String title, int length, Publisher publisher){
+    public BOOK(String author, String title, int length, Publisher publisher) {
         this.bookAuthor = author;
         setMediaTitle(title);
         setMediaLength(length);
@@ -16,22 +16,26 @@ public class BOOK extends Media {
     }
 
     // Setters
-    public void setBookAuthor(String author){
+    public void setBookAuthor(String author) {
         this.bookAuthor = author;
     }
 
     // Getters
-    public String getBookAuthor(){
+    public String getBookAuthor() {
         return bookAuthor;
     }
 
-    public String getBookLengthAsString(){
+    public String getBookLengthAsString() {
         String bookLength = String.valueOf(getMediaLength());
-
-        return bookLength + " pages.";
+        int tempCheck = Integer.valueOf(bookLength);
+        if (tempCheck == 1) {
+            return bookLength + " page.";
+        } else {
+            return bookLength + " pages.";
+        }
     }
 
-    public void printBOOK(){
+    public void printBOOK() {
         System.out.println("Author: " + bookAuthor);
         System.out.println("Title: " + getMediaTitle());
         System.out.println("Book length: " + getBookLengthAsString());
@@ -40,12 +44,10 @@ public class BOOK extends Media {
     }
 
     @Override
-    public String toString(){
-        return "@ Artist: " + getBookAuthor() + "\n Title: " + getMediaTitle() + "\n Length: " + getBookLengthAsString() + ". \n Publisher: " + getMediaPublisher();
+    public String toString() {
+        return "@ Artist: " + getBookAuthor() + "\n Title: " + getMediaTitle() + "\n Length: " + getBookLengthAsString()
+                + ". \n Publisher: " + getMediaPublisher();
 
     }
 
-
-
-    
 }

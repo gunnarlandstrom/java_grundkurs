@@ -1,42 +1,29 @@
 package javaprojekt;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CommandPrompter extends Person {
 
+    ArrayList<Person> personArrayList = new ArrayList<Person>();
     Scanner scannerInput = new Scanner(System.in);
     public static final String inputPrompt = "input> ";
     private static int showHelpMessage = 0;
 
     public CommandPrompter() {
         start();
-
     }
 
     public void start() {
         int commandMenuInput = 0;
-        while (commandMenuInput != 9){
-
-            if (showHelpMessage == 0) {
-                
-                showHelpMessage = +1;
-                commandPromptList();
-            }
-            System.out.print(inputPrompt);
-            commandMenuInput = takeIntInput();
-            
-            commandMenu(commandMenuInput);
-            
-        }
+        commandPromptList();
+        System.out.print(inputPrompt);
+        commandMenuInput = Integer.valueOf(takeInput());
+        commandMenu(commandMenuInput);
     }
 
-    public int takeIntInput() {
-        int userInput = scannerInput.nextInt();
-        return userInput;
-    }
-
-    public String takeStringInput() {
+    public String takeInput() {
         String userInput = scannerInput.nextLine();
-        System.out.println(inputPrompt);
         return userInput;
     }
 
@@ -45,33 +32,32 @@ public class CommandPrompter extends Person {
             commandAddPersonToList();
             return;
         } else if (userInput == 2) {
-            commandRemovePersonFromList();
+            // commandRemovePersonFromList();
             return;
         } else if (userInput == 3) {
-            commandSearchList();
+            // commandSearchList();
             return;
         } else if (userInput == 4) {
-            commandPrintList();
+            // commandPrintList();
             return;
         } else if (userInput == 5) {
-            commandSortList();
+            // commandSortList();
             return;
         } else if (userInput == 6) {
-            commandRandomizeList();
+            // commandRandomizeList();
             return;
-        } else if (userInput == 7){
-            commandSaveToFile();
+        } else if (userInput == 7) {
+            // commandSaveToFile();
             return;
-        } else if (userInput == 8){
-            commandReadFile();
+        } else if (userInput == 8) {
+            // commandReadFile();
             return;
-        } else if (userInput == 9){
+        } else if (userInput == 9) {
             commandQuit(userInput);
-        }else {
+        } else {
             System.out.println("Unrecognized input, try again! ");
             start();
         }
-
     }
 
     public void commandPromptList() {
@@ -86,7 +72,6 @@ public class CommandPrompter extends Person {
         System.out.println("[7] Save file - Saves the list to desired file.");
         System.out.println("[8] Read file - Imports list to program.");
         System.out.println("[9] Quit - Stops the program.\n");
-        start();
     }
 
     public void commandQuit(int input) {
@@ -98,32 +83,41 @@ public class CommandPrompter extends Person {
         }
     }
 
-    public void commandAddPersonToList(){
+    public void commandAddPersonToList() {
 
-        System.out.println("Enter the persons information!");
-        
+        System.out.println("Enter the personal information!");
+
         System.out.print("First name: ");
-        String firstName = takeStringInput();
-        
+        String firstName = takeInput();
+
         System.out.print("Last name: ");
-        String lastName = takeStringInput();
-        
+        String lastName = takeInput();
+
         System.out.print("Height in centimeters: ");
-        int height = takeIntInput();
-        
+        int height = Integer.valueOf(takeInput());
+
         System.out.print("Place of residence: ");
-        String residence = takeStringInput();
-        
+        String residence = takeInput();
+
         System.out.print("Address: ");
-        String address = takeStringInput();
-        
+        String address = takeInput();
+
         System.out.print("Zip code: ");
-        String zipCode = takeStringInput();
-        
-        Person newPerson = new Person(firstName, lastName, height, address, zipCode, residence);
-    
-    
+        String zipCode = takeInput();
+
+        Address newAddress = new Address(address, zipCode, residence);
+        Person newPerson = new Person(firstName, lastName, height, newAddress);
+
+        personArrayList.add(newPerson);
+
     }
 
+    // Prints ArrayList
+    public void personListPrinter(ArrayList<Person> list) {
+
+        for (int i = 0; i < list.length; i++) {
+            System.out.println(list);
+        }
+    
 
 }

@@ -1,22 +1,26 @@
 package javaprojekt;
 
+import java.util.ArrayList;
+
 public class Person extends Address {
     
 private String personFirstName;
 private String personLastName;
 private int personHeight;
-private static int amountOfPersons;
+private static int amountOfPersons = 0;
+private Address newAddress;
+
 
 // Constructors
 public Person(){
     Address newAdress = new Address();
     amountOfPersons++;
 }
-public Person(String firstName, String lastName, int height, String address, String zipcode, String residence){
-    Address newAdress = new Address(address, zipcode, residence);
+public Person(String firstName, String lastName, int height, Address address){
     this.personFirstName = firstName;
     this.personLastName = lastName;
     this.personHeight = height;
+    this.newAddress = address;
     amountOfPersons++;
 }
 
