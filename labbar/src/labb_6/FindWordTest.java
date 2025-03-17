@@ -8,6 +8,8 @@ public class FindWordTest {
 
         FindWord file1 = new FindWord();
 
+        file1.countWordsInFile("wantedWord", "wantedFile");
+
     }
     
 }
