@@ -16,15 +16,23 @@ public class CommandPrompter extends Person {
 
     public void start() {
         int commandMenuInput = 0;
-        commandPromptList();
-        System.out.print(inputPrompt);
-        commandMenuInput = Integer.valueOf(takeInput());
-        commandMenu(commandMenuInput);
-    }
+        do { 
+            
+            commandPromptList();
+            System.out.print(inputPrompt);
+            commandMenuInput = Integer.valueOf(takeInput());
+            commandMenu(commandMenuInput);
+        } while (commandMenuInput != 9);
+        }
 
     public String takeInput() {
         String userInput = scannerInput.nextLine();
         return userInput;
+    }
+
+    public ArrayList<Person> getArrayList(){
+
+        return personArrayList;
     }
 
     public void commandMenu(int userInput) {
@@ -38,7 +46,7 @@ public class CommandPrompter extends Person {
             // commandSearchList();
             return;
         } else if (userInput == 4) {
-            // commandPrintList();
+            commandPrintList();
             return;
         } else if (userInput == 5) {
             // commandSortList();
@@ -109,15 +117,18 @@ public class CommandPrompter extends Person {
         Person newPerson = new Person(firstName, lastName, height, newAddress);
 
         personArrayList.add(newPerson);
-
     }
 
     // Prints ArrayList
-    public void personListPrinter(ArrayList<Person> list) {
+    public void commandPrintList(){
 
-        for (int i = 0; i < list.length; i++) {
-            System.out.println(list);
+
+        for (int i = 0; i < personArrayList.size(); i++) {
+            Person temp = personArrayList.get(i);
+            temp.printPerson();
         }
-    
+
+    }
+
 
 }

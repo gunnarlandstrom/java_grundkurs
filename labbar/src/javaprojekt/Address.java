@@ -40,5 +40,10 @@ public class Address {
         return placeOfResidence;
     }
 
+    public String printAdressObject(){
+
+        return "Address: " + homeAddress + "\n" + "Zipcode: " + zipCode + "\n" + "Residence: " + placeOfResidence;
+    }
+
 
 }

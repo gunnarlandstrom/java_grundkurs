@@ -1,7 +1,5 @@
 package javaprojekt;
 
-import java.util.ArrayList;
-
 public class Person extends Address {
     
 private String personFirstName;
@@ -52,6 +50,17 @@ public int getHeight(){
 }
 public int getAmountOfPersons(){
     return amountOfPersons;
+}
+
+// Printer
+public void printPerson(){
+
+    System.out.println("First name: " + getFirstName());
+    System.out.println("Last name : " + getLastName());
+    System.out.println("Height : " + getHeight());
+    System.out.println(newAddress.printAdressObject());
+    System.out.println("");
+
 }
 
 
