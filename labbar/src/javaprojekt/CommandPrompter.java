@@ -8,6 +8,7 @@ public class CommandPrompter extends Person {
 
     ArrayList<Person> personArrayList = new ArrayList<Person>();
     Scanner scannerInput = new Scanner(System.in);
+    private int k = 1;
 
     public CommandPrompter() {
         start();
@@ -20,6 +21,7 @@ public class CommandPrompter extends Person {
             commandPromptList();
             System.out.print("input> ");
             commandMenuInput = Integer.valueOf(takeInput());
+            System.out.println("");
             commandMenu(commandMenuInput);
         } while (commandMenuInput != 9);
     }
@@ -42,16 +44,17 @@ public class CommandPrompter extends Person {
                 commandAddPersonToList();
                 return;
             case 2:
+
                 commandRemovePersonFromList();
                 return;
             case 3:
-                // commandSearchList();
+                commandSearchList();
                 return;
             case 4:
                 commandPrintList();
                 return;
             case 5:
-                // commandSortList();
+                commandSortList();
                 return;
             case 6:
                 // commandRandomizeList();
@@ -65,13 +68,14 @@ public class CommandPrompter extends Person {
             case 9:
                 commandQuit(userInput);
             default:
-            System.out.println("Unrecognized input, try again! ");
-            System.out.println("");
+                System.out.println("Unrecognized input, try again! ");
+                System.out.println("");
                 start();
         }
     }
 
     public void commandPromptList() {
+        System.out.println("");
         System.out.println("Amount of people in the current list: " + getAmountOfPersons());
         System.out.println("Valid commands are:");
         System.out.println("[1] Add - Add a new person to the list.");
@@ -121,22 +125,10 @@ public class CommandPrompter extends Person {
         System.out.print("Zip code: ");
         String zipCode = takeInput();
 
-        System.out.println(userName);
-
         Address newAddress = new Address(address, zipCode, residence);
         Person newPerson = new Person(userName, firstName, lastName, height, newAddress);
 
         personArrayList.add(newPerson);
-    }
-
-    // Prints ArrayList
-    public void commandPrintList() {
-
-        for (int i = 0; i < personArrayList.size(); i++) {
-            Person temp = personArrayList.get(i);
-            temp.printPerson();
-        }
-
     }
 
     // Creates UserName
@@ -144,7 +136,11 @@ public class CommandPrompter extends Person {
 
         String tempUserFirst;
         String tempUserLast;
-        String tempUserShort;
+
+        // Regex to remove whitespaces and invisible characters from string.
+        firstName = firstName.replaceAll("\\s", "");
+        lastName = lastName.replaceAll("\\s", "");
+
         if (firstName.length() > 2) {
             tempUserFirst = firstName.substring(0, 3);
         } else {
@@ -174,22 +170,24 @@ public class CommandPrompter extends Person {
 
     }
 
-    // Checks if username of new person is unique, else increments counter
+    // Checks if username of new person is unique, else increments counter, reads from list reversed to detect the number of identical username.
     public String isUserNameUnique(String userName) {
-        int k = 1;
         String tempUserName;
         String uniqueCounter;
 
         tempUserName = userName;
-        for (int i = 0; i < personArrayList.size(); i++) {
+
+        for (int i = personArrayList.size() - 1; i >= 0; i--) {
 
             Person temp = personArrayList.get(i);
-            String tempName = temp.getUserName().substring(0,6);
-
+            String tempName = temp.getUserName().substring(0, 6);
 
             if (tempName.equals(tempUserName)) {
 
+                String tempCounter = temp.getUserName().substring(7, 8);
+                k = Integer.valueOf(tempCounter);
                 k++;
+
                 uniqueCounter = String.valueOf(k);
                 uniqueCounter = (String.format("%02d", k));
                 tempUserName = userName + uniqueCounter;
@@ -197,6 +195,7 @@ public class CommandPrompter extends Person {
             }
 
         }
+        k = 1;
         uniqueCounter = String.valueOf(k);
         uniqueCounter = (String.format("%02d", k));
 
@@ -206,12 +205,75 @@ public class CommandPrompter extends Person {
     }
 
     // Removes user from the list by username.
-    public void commandRemovePersonFromList(){
+    public void commandRemovePersonFromList() {
+        System.out.print("Enter the username of the person you wish to remove from list: ");
+        String removeUser = takeInput().toLowerCase();
+
+        for (int i = 0; i < personArrayList.size(); i++) {
+
+            Person temp = personArrayList.get(i);
+            String tempUserNameFromList = temp.getUserName();
+
+            if (tempUserNameFromList.equals(removeUser)) {
+
+                personArrayList.remove(i);
+                temp.setAmountOfPersons(-1);
+            } else {
+                System.out.println("Username does not exist in file. Returning to main menu.");
+                start();
+            }
+        }
+    }
+
+    // Searches the list for a username.
+    public void commandSearchList() {
+
+        System.out.print("Enter the username you with to search for in the current list: ");
+        String doesUserExist = takeInput().toLowerCase();
+        System.out.println("");
+
+        for (int i = 0; i < personArrayList.size(); i++) {
+
+            Person temp = personArrayList.get(i);
+
+            String tempUsernameExists = temp.getUserName();
+
+            if (doesUserExist.equals(tempUsernameExists)) {
+
+                temp.printPerson();
+                System.out.println("");
+                return;
+            }
+        }
+        System.out.println("Username does not exist in current list. Returning to menu.");
+        start();
+
+    }
+
+    // Prints ArrayList
+    public void commandPrintList() {
+
+
+        System.out.println("*************** NAME LIST ***************");
+        System.out.println("Amount of people in the current list: " + getAmountOfPersons());
+        System.out.println("");
+        for (int i = 0; i < personArrayList.size(); i++) {
+            Person temp = personArrayList.get(i);
+            temp.printPersonAndAdress();
+            System.out.println("");
+        }
+
+    }
+
+    // Sorts list
+    public void commandSortList(){
 
 
 
 
 
     }
+
+
 
 }

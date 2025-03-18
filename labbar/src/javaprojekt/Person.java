@@ -43,6 +43,11 @@ public void setHeight(int input){
     this.personHeight = input;
 }
 
+public void setAmountOfPersons(int input){
+    amountOfPersons += input;
+
+}
+
 // Getters
 public String getUserName(){
     return userName;
@@ -62,15 +67,23 @@ public int getAmountOfPersons(){
 }
 
 // Printer
-public void printPerson(){
+public void printPersonAndAdress(){
 
     System.out.println("Username: " + getUserName());
     System.out.println("First name: " + getFirstName());
     System.out.println("Last name : " + getLastName());
     System.out.println("Height : " + getHeight());
     System.out.println(newAddress.printAdressObject());
-    System.out.println("");
+    
+}
 
+public void printPerson(){
+    String height = String.valueOf(getHeight());
+    int k = (getHeight()/100);
+    height = (String.format(%02d, k));
+
+    System.out.println("Username   Name                       Length [m]");
+    System.out.print(getUserName()+ "   " + getFirstName() + " " + getLastName() + "           " + getHeight());
 }
 
 
