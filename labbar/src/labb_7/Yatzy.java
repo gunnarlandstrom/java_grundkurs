@@ -1,4 +1,4 @@
-
+package labb_7;
 import java.text.DecimalFormat;
 
 public class Yatzy {
@@ -21,6 +21,7 @@ public class Yatzy {
         }
         System.out.println("");
 
+        @SuppressWarnings("unused")
         boolean isYatzy = isYatzy();
     }
 
@@ -139,9 +140,7 @@ public class Yatzy {
 
         System.out.println("Game # " + input);
         for (int i = 0; i < dices.length; i++) {
-            int tempOne = Integer.valueOf(dices[i]);
             for (int j = i + 1; j < dices.length; j++) {
-                int tempTwo = Integer.valueOf(dices[j]);
                 if (Integer.valueOf(dices[i]) < Integer.valueOf(dices[j])) {
                     String tempNumber = dices[i];
                     dices[i] = dices[j];

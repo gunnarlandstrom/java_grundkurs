@@ -3,6 +3,7 @@ package javaprojekt;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class CommandPrompter extends Person {
 
@@ -15,12 +16,17 @@ public class CommandPrompter extends Person {
     }
 
     public void start() {
-        int commandMenuInput;
+        int commandMenuInput = 0;
         do {
 
             commandPromptList();
             System.out.print("input> ");
-            commandMenuInput = Integer.valueOf(takeInput());
+            try {
+                commandMenuInput = Integer.valueOf(takeInput());
+            } catch (NumberFormatException e){
+                System.out.println("Something went wrong, try again, input a number!");
+                continue;
+            }
             System.out.println("");
             commandMenu(commandMenuInput);
         } while (commandMenuInput != 9);
@@ -30,7 +36,7 @@ public class CommandPrompter extends Person {
 
         String userInput = scannerInput.nextLine();
         return userInput;
-
+        
     }
 
     public ArrayList<Person> getArrayList() {
@@ -57,10 +63,10 @@ public class CommandPrompter extends Person {
                 commandSortList();
                 return;
             case 6:
-                // commandRandomizeList();
+                commandRandomizeList();
                 return;
             case 7:
-                // commandSaveToFile();
+                commandSaveToFile();
                 return;
             case 8:
                 // commandReadFile();
@@ -79,15 +85,15 @@ public class CommandPrompter extends Person {
         System.out.println("");
         System.out.println("Amount of people in the current list: " + getAmountOfPersons());
         System.out.println("Valid commands are:");
-        System.out.println("[1] Add - Add a new person to the list.");
-        System.out.println("[2] Remove - Remove a person from the list.");
-        System.out.println("[3] Search - Searches the list.");
-        System.out.println("[4] Print - Prints the list.");
-        System.out.println("[5] Sort - Sorts the list.");
+        System.out.println("[1] Add       - Add a new person to the list.");
+        System.out.println("[2] Remove    - Remove a person from the list.");
+        System.out.println("[3] Search    - Searches the list.");
+        System.out.println("[4] Print     - Prints the list.");
+        System.out.println("[5] Sort      - Sorts the list.");
         System.out.println("[6] Randomize - Randomizes the list.");
         System.out.println("[7] Save file - Saves the list to desired file.");
         System.out.println("[8] Read file - Imports list to program.");
-        System.out.println("[9] Quit - Stops the program.\n");
+        System.out.println("[9] Quit      - Stops the program.\n");
     }
 
     // Exits program
@@ -102,6 +108,7 @@ public class CommandPrompter extends Person {
 
     // Adds new person to Arraylist, creates username, checks if unique
     public void commandAddPersonToList() {
+        int height = 0; 
 
         System.out.println("Enter the personal information!");
 
@@ -116,7 +123,13 @@ public class CommandPrompter extends Person {
         userName = isUserNameUnique(userName);
 
         System.out.print("Height in centimeters: ");
-        int height = Integer.valueOf(takeInput());
+        try {
+            height = Integer.valueOf(takeInput());
+        } catch ( NumberFormatException e) {
+            System.out.println("");
+            System.out.println("Wrong input, please enter a number. Returning to main menu.");
+            start();
+        }        
 
         System.out.print("Place of residence: ");
         String residence = takeInput();
@@ -279,6 +292,8 @@ public class CommandPrompter extends Person {
                 break;
 
             case 4:
+                System.out.println("");
+                System.out.println("Returning to main menu.");
                 start();
                 break;
 
@@ -308,6 +323,7 @@ public class CommandPrompter extends Person {
     }
 
     // Sorts list by username
+    // Link to explanation: https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
     public void commandSortListByUsername() {
 
         Collections.sort(personArrayList,
@@ -315,12 +331,10 @@ public class CommandPrompter extends Person {
 
     }
 
-    // Sorts list by lastname.
+    // Sorts list by lastname using Comparator comparing lastnames, then firstnames if lastnames are equal.
+    // Link to explanation: https://medium.com/@AlexanderObregon/javas-comparator-thencomparing-method-explained-988e8f926a64
     public void commandSortListByLastname() {
-
-        
-        Collections.sort(personArrayList, (tempPersonOne, tempPersonTwo) -> tempPersonOne.getLastName().compareToIgnoreCase(tempPersonTwo.getLastName()));
-
+        personArrayList.sort(Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName));
     }
 
     // Sorts list by height.
@@ -328,7 +342,17 @@ public class CommandPrompter extends Person {
 
         Collections.sort(personArrayList, (tempPersonOne, tempPersonTwo) -> Integer.compare(tempPersonTwo.getHeight(),
                 tempPersonOne.getHeight()));
+    }
 
+    // Randomizes the list.
+    public void commandRandomizeList(){
+        Collections.shuffle(personArrayList);
+    }
+
+    // Saves the Arraylist to a file of the users choice.
+    public void commandSaveToFile(){
+
+        !!!!
     }
 
 }

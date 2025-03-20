@@ -57,6 +57,7 @@ public class Population {
             while (fileInput.hasNext()) {
                 int yearlyAmount = 0;
                 String populationAge = fileInput.next();
+                @SuppressWarnings("unused")
                 String populationTemp = fileInput.next();
                 String populationMenAmount = fileInput.next();
                 populationTemp = fileInput.next();

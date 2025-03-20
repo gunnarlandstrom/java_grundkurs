@@ -1,3 +1,4 @@
+package labb_7;
 public class YatzyTest {
 
     public void main(String[] args) {

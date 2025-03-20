@@ -1,7 +1,5 @@
 package javaprojekt;
 
-import java.text.DecimalFormat;
-
 public class Person extends Address {
     
 private String personFirstName;
@@ -9,11 +7,13 @@ private String personLastName;
 private String userName;
 private int personHeight;
 private static int amountOfPersons = -1;
+@SuppressWarnings("unused")
 private Address newAddress;
 
 
 // Constructors
 public Person(){
+    @SuppressWarnings("unused")
     Address newAdress = new Address();
     amountOfPersons++;
 }

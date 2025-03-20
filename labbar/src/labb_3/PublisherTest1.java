@@ -32,7 +32,7 @@ public class PublisherTest1 {
         Publisher publisherThree = new Publisher("Daily Bugle", "312-475 13 37");
         publisherThree.printPublisher();
         
-        System.out.println(publisherThree.toString());
+        System.out.println(publisherThree);
     }
 
 }

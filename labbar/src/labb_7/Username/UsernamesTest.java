@@ -26,7 +26,7 @@ public class UsernamesTest {
 
         Usernames users = new Usernames();
 
-        userNamesWow = users.create(names);
+        userNamesWow = Usernames.create(names);
 
         users.userNamesPrinter(userNamesWow);
 
