@@ -1,5 +1,7 @@
 package javaprojekt;
 
+import java.text.DecimalFormat;
+
 public class Person extends Address {
     
 private String personFirstName;
@@ -66,24 +68,15 @@ public int getAmountOfPersons(){
     return amountOfPersons;
 }
 
-// Printer
-public void printPersonAndAdress(){
-
-    System.out.println("Username: " + getUserName());
-    System.out.println("First name: " + getFirstName());
-    System.out.println("Last name : " + getLastName());
-    System.out.println("Height : " + getHeight());
-    System.out.println(newAddress.printAdressObject());
-    
-}
 
 public void printPerson(){
-    String height = String.valueOf(getHeight());
-    int k = (getHeight()/100);
-    height = (String.format(%02d, k));
+    double tempHeight = Double.valueOf(getHeight());
+    double k = (tempHeight/100);
+    String height = String.format("%.2f", k);
+    String name = getFirstName() + " " + getLastName();
+    name = String.format("%-30.30s", name);
 
-    System.out.println("Username   Name                       Length [m]");
-    System.out.print(getUserName()+ "   " + getFirstName() + " " + getLastName() + "           " + getHeight());
+    System.out.print(" " + getUserName()+ "   " + name + " " + height);
 }
 
 

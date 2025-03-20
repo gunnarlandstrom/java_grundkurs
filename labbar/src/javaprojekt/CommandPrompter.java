@@ -1,8 +1,8 @@
 package javaprojekt;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class CommandPrompter extends Person {
 
@@ -74,6 +74,7 @@ public class CommandPrompter extends Person {
         }
     }
 
+    // Menu prompt
     public void commandPromptList() {
         System.out.println("");
         System.out.println("Amount of people in the current list: " + getAmountOfPersons());
@@ -89,6 +90,7 @@ public class CommandPrompter extends Person {
         System.out.println("[9] Quit - Stops the program.\n");
     }
 
+    // Exits program
     public void commandQuit(int input) {
 
         if (input == 9) {
@@ -170,7 +172,8 @@ public class CommandPrompter extends Person {
 
     }
 
-    // Checks if username of new person is unique, else increments counter, reads from list reversed to detect the number of identical username.
+    // Checks if username of new person is unique, else increments counter, reads
+    // from list reversed to detect the number of identical username.
     public String isUserNameUnique(String userName) {
         String tempUserName;
         String uniqueCounter;
@@ -245,35 +248,87 @@ public class CommandPrompter extends Person {
                 return;
             }
         }
-        System.out.println("Username does not exist in current list. Returning to menu.");
+        System.out.println("***** Username does not exist in current list. Returning to menu. *****");
         start();
+
+    }
+
+    // Gives options of how to sort the list
+    public void commandSortList() {
+
+        System.out.println("How do you want to sort the list? ");
+        System.out.println("[1] By username. ");
+        System.out.println("[2] By lastname. ");
+        System.out.println("[3] By height.");
+        System.out.println("[4] Return to main menu.");
+        System.out.print("input> ");
+
+        int input = Integer.valueOf(takeInput());
+
+        switch (input) {
+            case 1:
+                commandSortListByUsername();
+                break;
+
+            case 2:
+                commandSortListByLastname();
+                break;
+
+            case 3:
+                commandSortListByHeight();
+                break;
+
+            case 4:
+                start();
+                break;
+
+            default:
+                System.out.println("Wrong input, try again!");
+                commandSortList();
+        }
 
     }
 
     // Prints ArrayList
     public void commandPrintList() {
 
-
         System.out.println("*************** NAME LIST ***************");
         System.out.println("Amount of people in the current list: " + getAmountOfPersons());
         System.out.println("");
+        System.out.println("Nr Username   Name                           Length [m]");
+
         for (int i = 0; i < personArrayList.size(); i++) {
             Person temp = personArrayList.get(i);
-            temp.printPersonAndAdress();
+            String numberTemp = String.format("%2d", i+1);
+            System.out.print(numberTemp);
+            temp.printPerson();
             System.out.println("");
         }
 
     }
 
-    // Sorts list
-    public void commandSortList(){
+    // Sorts list by username
+    public void commandSortListByUsername() {
 
-
-
-
+        Collections.sort(personArrayList,
+                (tempPersonOne, tempPersonTwo) -> tempPersonOne.getUserName().compareToIgnoreCase(tempPersonTwo.getUserName()));
 
     }
 
+    // Sorts list by lastname.
+    public void commandSortListByLastname() {
 
+        
+        Collections.sort(personArrayList, (tempPersonOne, tempPersonTwo) -> tempPersonOne.getLastName().compareToIgnoreCase(tempPersonTwo.getLastName()));
+
+    }
+
+    // Sorts list by height.
+    public void commandSortListByHeight() {
+
+        Collections.sort(personArrayList, (tempPersonOne, tempPersonTwo) -> Integer.compare(tempPersonTwo.getHeight(),
+                tempPersonOne.getHeight()));
+
+    }
 
 }
