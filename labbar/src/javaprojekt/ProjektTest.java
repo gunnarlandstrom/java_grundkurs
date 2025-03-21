@@ -1,10 +1,11 @@
 package javaprojekt;
 
-public class ProjektTest extends CommandPrompter {
-    
-    public static void main(String[] args){
+import java.io.FileNotFoundException;
 
-        @SuppressWarnings("unused")
+public class ProjektTest {
+
+    public static void main(String[] args) throws FileNotFoundException {
+
         CommandPrompter project = new CommandPrompter();
     }
 }

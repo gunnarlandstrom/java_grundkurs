@@ -1,9 +1,7 @@
 package javaprojekt;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.Collections;
-import java.util.Comparator;
+import java.io.*;
+import java.util.*;
 
 public class CommandPrompter extends Person {
 
@@ -11,11 +9,18 @@ public class CommandPrompter extends Person {
     Scanner scannerInput = new Scanner(System.in);
     private int k = 1;
 
-    public CommandPrompter() {
-        start();
+    // Constructor
+    public CommandPrompter() throws FileNotFoundException {
+        try {
+
+            start();
+        } catch (IOException error) {
+            System.out.println("Error, try again.");
+        }
     }
 
-    public void start() {
+    // Default promptlist and input.
+    public void start() throws FileNotFoundException {
         int commandMenuInput = 0;
         do {
 
@@ -23,7 +28,7 @@ public class CommandPrompter extends Person {
             System.out.print("input> ");
             try {
                 commandMenuInput = Integer.valueOf(takeInput());
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Something went wrong, try again, input a number!");
                 continue;
             }
@@ -32,19 +37,22 @@ public class CommandPrompter extends Person {
         } while (commandMenuInput != 9);
     }
 
+    // Takes keyboard input
     public String takeInput() {
 
         String userInput = scannerInput.nextLine();
         return userInput;
-        
+
     }
 
+    // getter for the arraylist.
     public ArrayList<Person> getArrayList() {
 
         return personArrayList;
     }
 
-    public void commandMenu(int userInput) {
+    // Menu for all choices.
+    public void commandMenu(int userInput) throws FileNotFoundException {
         switch (userInput) {
             case 1:
                 commandAddPersonToList();
@@ -69,18 +77,18 @@ public class CommandPrompter extends Person {
                 commandSaveToFile();
                 return;
             case 8:
-                // commandReadFile();
+                commandReadFile();
                 return;
             case 9:
                 commandQuit(userInput);
             default:
-                System.out.println("Unrecognized input, try again! ");
+                System.out.println("Unrecognized input, try again, enter a number [1-9]. ");
                 System.out.println("");
                 start();
         }
     }
 
-    // Menu prompt
+    // Menu prompt.
     public void commandPromptList() {
         System.out.println("");
         System.out.println("Amount of people in the current list: " + getAmountOfPersons());
@@ -106,9 +114,54 @@ public class CommandPrompter extends Person {
         }
     }
 
+    // Checks if a new person trying to be added is unique by comparing first and
+    // lastname with height.
+    public boolean isPersonUnique(String firstName, String lastName, int height) throws FileNotFoundException {
+
+        for (int i = 0; i < personArrayList.size(); i++) {
+            Person tempPerson = personArrayList.get(i);
+            String tempFirstName = tempPerson.getFirstName().toLowerCase();
+            String tempLastName = tempPerson.getLastName().toLowerCase();
+            int tempHeight = tempPerson.getHeight();
+
+            if (firstName.equals(tempFirstName) && lastName.equals(tempLastName) && height == tempHeight) {
+
+                try {
+                    System.out.println("");
+                    System.out.println("******* You are trying to add a person already in the list. ********");
+                    System.out.println("");
+                    System.out.println("[1] Change inputs. ");
+                    System.out.println("[2] Return to main menu. ");
+
+                    System.out.print("input> ");
+                    int errorChoice = Integer.parseInt(takeInput());
+
+                    switch (errorChoice) {
+                        case 1:
+                            commandAddPersonToList();
+                            return false;
+                        case 2:
+                            System.out.println("Returning to main menu");
+                            start();
+                        default:
+
+                    }
+
+                } catch (NumberFormatException e) {
+                    System.out.println("Wrong input, please enter a number. [1] or [2]");
+                    continue;
+                }
+
+            }
+
+        }
+        return true;
+
+    }
+
     // Adds new person to Arraylist, creates username, checks if unique
-    public void commandAddPersonToList() {
-        int height = 0; 
+    public void commandAddPersonToList() throws FileNotFoundException {
+        int height = 0;
 
         System.out.println("Enter the personal information!");
 
@@ -125,25 +178,35 @@ public class CommandPrompter extends Person {
         System.out.print("Height in centimeters: ");
         try {
             height = Integer.valueOf(takeInput());
-        } catch ( NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("");
             System.out.println("Wrong input, please enter a number. Returning to main menu.");
             start();
-        }        
+        }
 
-        System.out.print("Place of residence: ");
-        String residence = takeInput();
+        boolean tempUnique = isPersonUnique(firstName.toLowerCase(), lastName.toLowerCase(), height);
 
-        System.out.print("Address: ");
-        String address = takeInput();
+        if (tempUnique) {
 
-        System.out.print("Zip code: ");
-        String zipCode = takeInput();
+            System.out.print("Address: ");
+            String address = takeInput();
 
-        Address newAddress = new Address(address, zipCode, residence);
-        Person newPerson = new Person(userName, firstName, lastName, height, newAddress);
+            System.out.print("Zip code: ");
+            String zipCode = takeInput();
 
-        personArrayList.add(newPerson);
+            System.out.print("Place of residence: ");
+            String residence = takeInput();
+
+            firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
+            lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
+            address = address.substring(0, 1).toUpperCase() + address.substring(1).toLowerCase();
+            residence = residence.substring(0, 1).toUpperCase() + residence.substring(1).toLowerCase();
+
+            Address newAddress = new Address(address, zipCode, residence);
+            Person newPerson = new Person(userName, firstName, lastName, height, newAddress);
+
+            personArrayList.add(newPerson);
+        }
     }
 
     // Creates UserName
@@ -221,7 +284,7 @@ public class CommandPrompter extends Person {
     }
 
     // Removes user from the list by username.
-    public void commandRemovePersonFromList() {
+    public void commandRemovePersonFromList() throws FileNotFoundException {
         System.out.print("Enter the username of the person you wish to remove from list: ");
         String removeUser = takeInput().toLowerCase();
 
@@ -232,8 +295,16 @@ public class CommandPrompter extends Person {
 
             if (tempUserNameFromList.equals(removeUser)) {
 
+                Person tempPerson = personArrayList.get(i);
+                System.out.println("");
+                System.out.println("*** Removing person ***");
+                tempPerson.printPerson();
+                System.out.println("");
+
                 personArrayList.remove(i);
                 temp.setAmountOfPersons(-1);
+                break;
+
             } else {
                 System.out.println("Username does not exist in file. Returning to main menu.");
                 start();
@@ -242,7 +313,7 @@ public class CommandPrompter extends Person {
     }
 
     // Searches the list for a username.
-    public void commandSearchList() {
+    public void commandSearchList() throws FileNotFoundException {
 
         System.out.print("Enter the username you with to search for in the current list: ");
         String doesUserExist = takeInput().toLowerCase();
@@ -267,7 +338,7 @@ public class CommandPrompter extends Person {
     }
 
     // Gives options of how to sort the list
-    public void commandSortList() {
+    public void commandSortList() throws FileNotFoundException {
 
         System.out.println("How do you want to sort the list? ");
         System.out.println("[1] By username. ");
@@ -304,7 +375,8 @@ public class CommandPrompter extends Person {
 
     }
 
-    // Prints ArrayList
+    // Prints ArrayList **************************************SKA PRINTA MAX 20
+    // ELEMENT, SEN ENTER FÖR FLER*******************
     public void commandPrintList() {
 
         System.out.println("*************** NAME LIST ***************");
@@ -314,25 +386,28 @@ public class CommandPrompter extends Person {
 
         for (int i = 0; i < personArrayList.size(); i++) {
             Person temp = personArrayList.get(i);
-            String numberTemp = String.format("%2d", i+1);
+            String numberTemp = String.format("%2d", i + 1);
             System.out.print(numberTemp);
             temp.printPerson();
             System.out.println("");
         }
-
     }
 
     // Sorts list by username
-    // Link to explanation: https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
+    // Link to explanation:
+    // https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
     public void commandSortListByUsername() {
 
         Collections.sort(personArrayList,
-                (tempPersonOne, tempPersonTwo) -> tempPersonOne.getUserName().compareToIgnoreCase(tempPersonTwo.getUserName()));
+                (tempPersonOne, tempPersonTwo) -> tempPersonOne.getUserName()
+                        .compareToIgnoreCase(tempPersonTwo.getUserName()));
 
     }
 
-    // Sorts list by lastname using Comparator comparing lastnames, then firstnames if lastnames are equal.
-    // Link to explanation: https://medium.com/@AlexanderObregon/javas-comparator-thencomparing-method-explained-988e8f926a64
+    // Sorts list by lastname using Comparator comparing lastnames, then firstnames
+    // if lastnames are equal.
+    // Link to explanation:
+    // https://medium.com/@AlexanderObregon/javas-comparator-thencomparing-method-explained-988e8f926a64
     public void commandSortListByLastname() {
         personArrayList.sort(Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName));
     }
@@ -345,14 +420,99 @@ public class CommandPrompter extends Person {
     }
 
     // Randomizes the list.
-    public void commandRandomizeList(){
+    public void commandRandomizeList() {
         Collections.shuffle(personArrayList);
     }
 
-    // Saves the Arraylist to a file of the users choice.
-    public void commandSaveToFile(){
+    // Scanner
+    public Scanner scannerFromFile(String desiredFileName) throws FileNotFoundException {
+        Scanner fileInput = new Scanner(new File(desiredFileName));
+        return fileInput;
+    }
 
-        !!!!
+    // Reads data from file to arraylist.
+    public void commandReadFile() throws FileNotFoundException {
+
+        try {
+
+            System.out.println("** You are loading a desired list from a file **");
+            System.out.println("");
+            System.out.print("What is the filename of the file you want to load?: ");
+
+            String wantedFile = takeInput();
+            Scanner readInput = scannerFromFile(wantedFile);
+            personArrayList.clear();
+            readInput.useDelimiter("\\|");
+            int i = 0;
+
+            while (readInput.hasNext()) {
+
+                String tempFirstName = readInput.next();
+                tempFirstName = tempFirstName.substring(0, 1).toUpperCase() + tempFirstName.substring(1).toLowerCase();
+                
+                String tempLastName = readInput.next();
+                tempLastName = tempLastName.substring(0, 1).toUpperCase() + tempLastName.substring(1).toLowerCase();
+                
+                String tempUserName = readInput.next();
+                tempUserName = tempUserName.toLowerCase();
+                
+                int tempHeight = Integer.valueOf(readInput.next());
+                
+                String tempAddress = readInput.next();
+                tempAddress = tempAddress.substring(0,1).toUpperCase() + tempAddress.substring(1).toLowerCase();
+                
+                String tempZipCode = readInput.next();
+                
+                String tempResidence = readInput.nextLine().substring(1);
+                tempResidence = tempResidence.substring(0,1).toUpperCase() + tempResidence.substring(1).toLowerCase();
+
+                Address tempAddressObj = new Address(tempAddress, tempZipCode, tempResidence);
+                Person tempPerson = new Person(tempUserName, tempFirstName, tempLastName, tempHeight, tempAddressObj);
+                personArrayList.add(i, tempPerson);
+                i++;
+
+            }
+            start();
+
+        } catch (IOException error) {
+
+            System.out.println("");
+            System.out.println("Filename does not exist, please try again! Returning to main menu.");
+            start();
+        }
+    }
+
+    // Saves the Arraylist to a file of the users choice.
+    public void commandSaveToFile() throws FileNotFoundException {
+
+        try {
+            System.out.println("** You are saving your list to a desired file **");
+            System.out.println("");
+            System.out.print("What filename do you want to call your list?: ");
+            String desiredFileName = takeInput();
+            PrintWriter saveFile = new PrintWriter(new BufferedWriter(new FileWriter(desiredFileName)));
+
+            for (int i = 0; i < getAmountOfPersons(); i++) {
+                Person tempPerson = personArrayList.get(i);
+                Address tempAddressObj = tempPerson.getAddressClass();
+
+                String tempName = tempPerson.getFirstName() + "|" + tempPerson.getLastName();
+                String tempSignature = "|" + tempPerson.getUserName();
+                String tempHeight = "|" + String.valueOf(tempPerson.getHeight());
+                String tempAddress = "|" + tempAddressObj.getHomeAddress();
+                String tempZipcode = "|" + tempAddressObj.getZipCode();
+                String tempResidence = "|" + tempAddressObj.getPlaceOfResidence();
+
+                saveFile.println(tempName + tempSignature + tempHeight + tempAddress + tempZipcode + tempResidence);
+
+            }
+            saveFile.close();
+        } catch (IOException error) {
+
+            System.out.println("Something went wrong, returning to main menu.");
+            start();
+        }
+
     }
 
 }
